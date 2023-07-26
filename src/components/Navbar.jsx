@@ -16,46 +16,46 @@ import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import { ShoppingCartRounded } from "@mui/icons-material";
 
-export const Navbar = () => {
+const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
-  const menuOption = [
+  const menuOptions = [
     {
       text: "Home",
       icon: <HomeIcon />,
     },
     {
-      text: "About",
+      text: "Sobre",
       icon: <InfoIcon />,
     },
     {
-      text: "Testimonials",
+      text: "Depoimento",
       icon: <CommentRoundedIcon />,
     },
     {
-      text: "Contact",
+      text: "Contato",
       icon: <PhoneRoundedIcon />,
     },
     {
-      text: "Cart",
+      text: "Carrinho",
       icon: <ShoppingCartRounded />,
     },
   ];
   return (
     <nav>
-      <div className="class-logo-container">
+      <div className="nav-logo-container">
         <img src={Logo} alt="" />
       </div>
       <div className="navbar-links-container">
         <a href="">Home</a>
         <a href="">Sobre</a>
-        <a href="">Testemunhos</a>
+        <a href="">Depoimento</a>
         <a href="">Contato</a>
         <a href="">
           <BsCart2 className="navbar-cart-icon" />
         </a>
-        <button className="primary-button">Reservas agora</button>
+        <button className="primary-button">Reservas Agora</button>
       </div>
-      <div className="nav-menu-container">
+      <div className="navbar-menu-container">
         <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
       </div>
       <Drawer open={openMenu} onClose={() => setOpenMenu(false)} anchor="right">
@@ -66,17 +66,20 @@ export const Navbar = () => {
           onKeyDown={() => setOpenMenu(false)}
         >
           <List>
-            {menuOption.map((item) => {
+            {menuOptions.map((item) => (
               <ListItem key={item.text} disablePadding>
                 <ListItemButton>
-                  <listItemIcon>{item.icon}</listItemIcon>
-                  <listItemText primary={item.text} />
+                  <ListItemIcon>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.text} />
                 </ListItemButton>
-              </ListItem>;
-            })}
+              </ListItem>
+            ))}
           </List>
+          <Divider />
         </Box>
       </Drawer>
     </nav>
   );
 };
+
+export default Navbar;
