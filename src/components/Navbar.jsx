@@ -15,6 +15,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import CommentRoundedIcon from "@mui/icons-material/CommentRounded";
 import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import { ShoppingCartRounded } from "@mui/icons-material";
+import { Link } from "react-scroll";
 
 const Navbar = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -22,34 +23,84 @@ const Navbar = () => {
     {
       text: "Home",
       icon: <HomeIcon />,
+      to: "home",
     },
     {
       text: "Sobre",
       icon: <InfoIcon />,
+      to: "sobre",
     },
     {
       text: "Depoimento",
       icon: <CommentRoundedIcon />,
+      to: "depoimento",
     },
     {
       text: "Contato",
       icon: <PhoneRoundedIcon />,
+      to: "contato",
     },
     {
       text: "Carrinho",
       icon: <ShoppingCartRounded />,
+      to: "carrinho"
     },
   ];
   return (
     <nav>
       <div className="nav-logo-container">
-        <img src={Logo} alt="" />
+        <Link
+          className="link"
+          to="home"
+          spy={true}
+          smooth={true}
+          offset={-100}
+          duration={500}
+        >
+          <img src={Logo} alt="" />
+        </Link>
       </div>
       <div className="navbar-links-container">
-        <a href="">Home</a>
-        <a href="">Sobre</a>
-        <a href="">Depoimento</a>
-        <a href="">Contato</a>
+        <Link
+          className="link"
+          to="home"
+          spy={true}
+          smooth={true}
+          offset={-100}
+          duration={500}
+        >
+          Home
+        </Link>
+        <Link
+          className="link"
+          to="sobre"
+          spy={true}
+          smooth={true}
+          offset={-100}
+          duration={500}
+        >
+          Sobre
+        </Link>
+        <Link
+          className="link"
+          to="depoimento"
+          spy={true}
+          smooth={true}
+          offset={100}
+          duration={500}
+        >
+          Depoimento
+        </Link>
+        <Link
+          className="link"
+          to="contato"
+          spy={true}
+          smooth={true}
+          offset={-150}
+          duration={500}
+        >
+          Contato
+        </Link>
         <a href="">
           <BsCart2 className="navbar-cart-icon" />
         </a>
@@ -67,12 +118,21 @@ const Navbar = () => {
         >
           <List>
             {menuOptions.map((item) => (
-              <ListItem key={item.text} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.text} />
-                </ListItemButton>
-              </ListItem>
+              <Link
+                key={item.text}
+                to={item.to}
+                spy={true}
+                smooth={true}
+                offset={-100}
+                duration={500}
+              >
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>{item.icon}</ListItemIcon>
+                    <ListItemText primary={item.text} />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
             ))}
           </List>
           <Divider />
